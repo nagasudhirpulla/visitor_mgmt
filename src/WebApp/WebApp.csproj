@@ -64,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\guides\" />
     <Folder Include="wwwroot\assets\img\" />
   </ItemGroup>
 
