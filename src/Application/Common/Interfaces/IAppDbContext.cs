@@ -14,6 +14,7 @@ namespace Application.Common.Interfaces
 {
     public interface IAppDbContext
     {
+        DbSet<VisitorEntry> VisitorEntries { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
         EntityEntry Attach([NotNullAttribute] object entity);
     }

@@ -1,6 +1,7 @@
 ﻿@page
 @model WebApp.Pages.Visitors.CreateModel
 @{
+    ViewData["Title"] = "Create Visitor Entry";
 }
 
 <div class="row justify-content-center align-items-center">
@@ -12,19 +13,59 @@
             <input asp-for="NewVisitor.ImageUri" type="hidden" />
             <div class="form-group">
                 <div id="cameraFeed"></div>
-                <button type="button" class="btn btn-sm btn-success" onclick="takeSnapshot()">Capture</button>
+                <button type="button" class="btn btn-sm btn-success" id="captureBtn">Capture</button>
                 <div id="capturedImage">Your captured image will appear here...</div>
                 <span asp-validation-for="NewVisitor.ImageUri" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NewVisitor.Name"></label>
-                <input asp-for="NewVisitor.Name" class="form-control" />
-                <span asp-validation-for="NewVisitor.Name" class="text-danger"></span>
+                <label asp-for="NewVisitor.VisitorName"></label>
+                <input asp-for="NewVisitor.VisitorName" class="form-control" />
+                <span asp-validation-for="NewVisitor.VisitorName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NewVisitor.Organization"></label>
-                <input asp-for="NewVisitor.Organization" class="form-control" />
-                <span asp-validation-for="NewVisitor.Organization" class="text-danger"></span>
+                <label asp-for="NewVisitor.CompanyName"></label>
+                <input asp-for="NewVisitor.CompanyName" class="form-control" />
+                <span asp-validation-for="NewVisitor.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.PhoneNumber"></label>
+                <input asp-for="NewVisitor.PhoneNumber" class="form-control" />
+                <span asp-validation-for="NewVisitor.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.VistorAddress"></label>
+                <input asp-for="NewVisitor.VistorAddress" class="form-control" />
+                <span asp-validation-for="NewVisitor.VistorAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.IdType"></label>
+                <input asp-for="NewVisitor.IdType" class="form-control" />
+                <span asp-validation-for="NewVisitor.IdType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.IdProofNumber"></label>
+                <input asp-for="NewVisitor.IdProofNumber" class="form-control" />
+                <span asp-validation-for="NewVisitor.IdProofNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.Devices"></label>
+                <input asp-for="NewVisitor.Devices" class="form-control" />
+                <span asp-validation-for="NewVisitor.Devices" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.PurposeOfVisit"></label>
+                <input asp-for="NewVisitor.PurposeOfVisit" class="form-control" />
+                <span asp-validation-for="NewVisitor.PurposeOfVisit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.PersonToMeet"></label>
+                <input asp-for="NewVisitor.PersonToMeet" class="form-control" />
+                <span asp-validation-for="NewVisitor.PersonToMeet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewVisitor.InTime"></label>
+                <input asp-for="NewVisitor.InTime" class="form-control datetimepicker" type="text" value="@(Model.NewVisitor.InTime.ToString("yyyy-MM-dd HH:mm"))" />
+                <span asp-validation-for="NewVisitor.InTime" class="text-danger"></span>
             </div>
 
             <button type="submit" class="btn btn-success">Create Visitor</button>
@@ -35,21 +76,29 @@
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="~/js/node_modules/webcamjs/webcam.min.js"></script>
+    <script src="~/js/node_modules/moment/min/moment.min.js"></script>
+    <script src="~/js/datetime_picker/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="~/js/datetime_picker/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+    <script src="~/js/app/setupDateTimePicker.js"></script>
     <script>
-        Webcam.set({
-            width: 320,
-            height: 240,
-            image_format: 'jpeg',
-            jpeg_quality: 90
-        });
-        Webcam.attach('#cameraFeed');
-        function takeSnapshot() {
-            // take snapshot and get image data
-            Webcam.snap(function (data_uri) {
-                // display captured image
-                document.getElementById('capturedImage').innerHTML = '<img src="' + data_uri + '"/>';
-                document.getElementById("NewVisitor_ImageUri").value = data_uri;
+        jQuery(document).ready(function ($) {
+            Webcam.set({
+                width: 320,
+                height: 240,
+                image_format: 'jpeg',
+                jpeg_quality: 90
             });
-        }
+            Webcam.attach('#cameraFeed');
+            document.getElementById("captureBtn").onclick = function () {
+                // take snapshot and get image data
+                Webcam.snap(function (data_uri) {
+                    // display captured image
+                    document.getElementById('capturedImage').innerHTML = '<img src="' + data_uri + '"/>';
+                    document.getElementById("NewVisitor_ImageUri").value = data_uri;
+                });
+            };
+
+            setupDatetimepicker('datetimepicker');
+        });
     </script>
 }

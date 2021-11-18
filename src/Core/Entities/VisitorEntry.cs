@@ -1,14 +1,9 @@
-﻿using AutoMapper;
-using Core.Entities;
-using MediatR;
+﻿using Core.Common;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using static Application.Common.Mappings.MappingProfile;
 
-namespace Application.Visitors.Commands.CreateVisitor
+namespace Core.Entities
 {
-    public class CreateVisitorCommand : IRequest<int>, IMapFrom<VisitorEntry>
+    public class VisitorEntry : AuditableEntity
     {
         public string VisitorName { get; set; }
         public string CompanyName { get; set; }
@@ -21,12 +16,6 @@ namespace Application.Visitors.Commands.CreateVisitor
         public string PersonToMeet { get; set; }
         public DateTime InTime { get; set; }
         public DateTime? OutTime { get; set; }
-        public string ImageUri { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<VisitorEntry, CreateVisitorCommand>()
-                .ReverseMap();
-        }
+        public string ImageFilename { get; set; }
     }
 }

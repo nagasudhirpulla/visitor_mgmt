@@ -7,11 +7,15 @@ namespace Application.Visitors.Commands.CreateVisitor
     {
         public CreateVisitorCommandValidator()
         {
-            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.VisitorName).NotEmpty();
+            RuleFor(x => x.CompanyName).NotEmpty();
+            RuleFor(x => x.PhoneNumber).NotEmpty();
+            RuleFor(x => x.IdType).NotEmpty();
+            RuleFor(x => x.IdProofNumber).NotEmpty();
+            RuleFor(x => x.PurposeOfVisit).NotEmpty();
+            RuleFor(x => x.PersonToMeet).NotEmpty();
+            RuleFor(x => x.InTime).NotEmpty();
             RuleFor(x => x.ImageUri).NotEmpty();
-            RuleFor(x => x.Organization).NotEmpty();
-            RuleFor(x => x.Purpose).NotEmpty();
-            RuleFor(x => x.ConcerenedPersonName).NotEmpty();
         }
     }
 }

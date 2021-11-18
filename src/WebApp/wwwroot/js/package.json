@@ -27,6 +27,7 @@
     "datatables.net-fixedheader": "^3.2.0",
     "jquery": "^3.5.1",
     "jszip": "^3.5.0",
+    "moment": "^2.29.1",
     "pdfmake": "^0.1.68",
     "plotly.js-dist": "^1.55.2",
     "source-loader": "^1.0.0",

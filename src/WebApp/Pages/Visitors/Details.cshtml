@@ -1,0 +1,99 @@
+﻿@page
+@model WebApp.Pages.Visitors.DetailsModel
+@{
+    ViewData["Title"] = "Visitor Gate Pass";
+}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col col-md-12 col-lg-12 col-xl-12">
+            <table id="gatePassTbl">
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <h3>POWER SYSTEM OPERATION CORPORATION LIMITED</h3>
+                        <h3>WESTERN REGIONAL LOAD DESPATCH CENTRE, MUMBAI</h3>
+                        <h3>Visitor Gate Pass</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                        <img src="@(Model.ImgDataUri)" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Visitor Name</td>
+                    <td>@Model.VisitorEntry.VisitorName</td>
+                </tr>
+                <tr>
+                    <td>Record ID</td>
+                    <td>@Model.VisitorEntry.Id</td>
+                </tr>
+                <tr>
+                    <td>Record Creation Time</td>
+                    <td>@Model.VisitorEntry.Created</td>
+                </tr>
+                <tr>
+                    <td>Company</td>
+                    <td>@Model.VisitorEntry.CompanyName</td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td>@Model.VisitorEntry.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td>Visitor Address</td>
+                    <td>@Model.VisitorEntry.VistorAddress</td>
+                </tr>
+                <tr>
+                    <td>ID Type</td>
+                    <td>@Model.VisitorEntry.IdType</td>
+                </tr>
+                <tr>
+                    <td>ID Number</td>
+                    <td>@Model.VisitorEntry.IdProofNumber </td>
+                </tr>
+                <tr>
+                    <td>Devices</td>
+                    <td>@Model.VisitorEntry.Devices</td>
+                </tr>
+                <tr>
+                    <td>Purpose of visit</td>
+                    <td>@Model.VisitorEntry.PurposeOfVisit</td>
+                </tr>
+                <tr>
+                    <td>Person To Meet</td>
+                    <td>@Model.VisitorEntry.PersonToMeet</td>
+                </tr>
+                <tr>
+                    <td>In Time</td>
+                    <td>@Model.VisitorEntry.InTime.ToString("dd-MMM-yyyy HH:mm")</td>
+                </tr>
+                <tr>
+                    <td>Out Time</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <style>
+        #gatePassTbl {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #gatePassTbl td, #gatePassTbl th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #gatePassTbl tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #gatePassTbl tr:hover {
+                background-color: #ddd;
+            }
+    </style>
+}

@@ -18,6 +18,7 @@ namespace Infra.Persistence
     public class AppDbContext : IdentityDbContext<ApplicationUser>, IAppDbContext
     {
         private readonly ICurrentUserService _currentUserService;
+        public DbSet<VisitorEntry> VisitorEntries { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUserService)
             : base(options)
