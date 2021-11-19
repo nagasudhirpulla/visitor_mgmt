@@ -93,6 +93,7 @@ namespace Infra.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
@@ -105,12 +106,15 @@ namespace Infra.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IdProofNumber")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IdType")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageFilename")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("InTime")
@@ -126,15 +130,19 @@ namespace Infra.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PersonToMeet")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PurposeOfVisit")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("VisitorName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("VistorAddress")

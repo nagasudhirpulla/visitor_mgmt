@@ -3,3 +3,161 @@
 @{
     ViewData["Title"] = "Visitor Entries List";
 }
+
+<div class="row justify-content-center align-items-center">
+    <div class="col col-md-12">
+        <h2>@ViewData["Title"]</h2>
+        <hr />
+        <p>
+            <a asp-page="Create" class="btn btn-success btn-sm">Create New Visitor Entry</a>
+        </p>
+        <div>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label>Start Date</label>
+                <input asp-for="VQuery.StartDate" type="date" />
+                <label style="margin-left:3em">End Date</label>
+                <input asp-for="VQuery.EndDate" type="date" />
+                <input style="margin-left:3em" type="submit" value="Load" class="btn btn-primary" />
+            </form>
+        </div>
+        <table class="table table-bordered table-hover display" id="display_table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        In Time
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Company
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Purpose of Visit
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.VisitorsList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VisitorName)
+                        </td>
+                        <td>
+                            @item.InTime.ToString("yyyy-MM-dd HH:mm")
+                        </td>
+                        <td>
+                            <img src="@item.ImageFilename" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CompanyName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VistorAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurposeOfVisit)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-block">Edit</a>
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm btn-block">Details</a>
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-block">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        In Time
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                    <th>
+                        Company
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Purpose of Visit
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    @*<link rel="stylesheet" href="~/js/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" />*@
+    <link rel="stylesheet" href="~/js/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="~/css/datatables/fixedHeader.dataTables.min.css" />
+    <link rel="stylesheet" href="~/js/node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" />
+    <script src="~/js/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/js/node_modules/jszip/dist/jszip.min.js"></script>
+    <script src="~/js/node_modules/pdfmake/build/pdfmake.min.js"></script>
+    <script src="~/js/node_modules/pdfmake/build/vfs_fonts.js"></script>
+    <script src="~/js/node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script>
+        function strtrunc(str, max, add) {
+            add = add || '...';
+            return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
+        };
+        $(document).ready(function () {
+            // https://datatables.net/examples/api/multi_filter.html
+            // Setup - add a text input to each footer cell
+            $('#display_table tfoot th').each(function () {
+                //var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search" />');
+            });
+            var display_table = $('#display_table').DataTable({
+                fixedHeader: true,
+                "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+                "pageLength": 50,
+                dom: 'Bfrtip',
+                "order": [[0, "asc"]],
+                buttons: ['pageLength', 'copy', 'csv', 'excel', 'pdf', 'print']
+            });
+            var r = $('#display_table tfoot tr');
+            r.find('th').each(function () {
+                $(this).css('padding', '3px');
+            });
+            $('#display_table thead').append(r);
+            // Apply the filter
+            // https://www.jqueryscript.net/demo/DataTables-Jquery-Table-Plugin/examples/api/multi_filter.html
+            $("#display_table thead input").on('keyup change', function () {
+                display_table
+                    .column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+            });
+        });
+    </script>
+    <style>
+        thead input {
+            padding: 2px;
+            box-sizing: border-box;
+            font-size: small;
+            width: 100%
+        }
+    </style>
+}

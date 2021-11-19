@@ -81,6 +81,9 @@
     <link href="~/js/datetime_picker/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
     <script src="~/js/app/setupDateTimePicker.js"></script>
     <script>
+        function setImage(dataUri) {
+            document.getElementById('capturedImage').innerHTML = '<img src="' + dataUri + '"/>';
+        }
         jQuery(document).ready(function ($) {
             Webcam.set({
                 width: 320,
@@ -93,12 +96,16 @@
                 // take snapshot and get image data
                 Webcam.snap(function (data_uri) {
                     // display captured image
-                    document.getElementById('capturedImage').innerHTML = '<img src="' + data_uri + '"/>';
+                    setImage(data_uri);
                     document.getElementById("NewVisitor_ImageUri").value = data_uri;
                 });
             };
 
             setupDatetimepicker('datetimepicker');
+            @if(Model.NewVisitor.ImageUri!=null)
+            {
+                <text>setImage("@Model.NewVisitor.ImageUri");</text>
+            }
         });
     </script>
 }
