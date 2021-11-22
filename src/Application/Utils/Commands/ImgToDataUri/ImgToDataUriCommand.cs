@@ -27,10 +27,15 @@ namespace Application.Utils.Commands.ImgToDataUri
 
         public async Task<string> Handle(ImgToDataUriCommand request, CancellationToken cancellationToken)
         {
-            string imgDataUri = "data:image/"
-                        + Path.GetExtension(request.ImageFilename).Replace(".", "")
-                        + ";base64,"
-                        + Convert.ToBase64String(System.IO.File.ReadAllBytes(Path.Combine(_imageFolderPath, request.ImageFilename)));
+            string imgPath = Path.Combine(_imageFolderPath, request.ImageFilename);
+            string imgDataUri = "";
+            if (File.Exists(imgPath))
+            {
+                imgDataUri = "data:image/"
+                            + Path.GetExtension(request.ImageFilename).Replace(".", "")
+                            + ";base64,"
+                            + Convert.ToBase64String(System.IO.File.ReadAllBytes(imgPath));
+            }
             return await Task.FromResult(imgDataUri);
         }
     }
