@@ -31,7 +31,7 @@ namespace Infra
             {
                 // Add Persistence Infra
                 services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlite(
+                    options.UseNpgsql(
                         configuration.GetConnectionString("DefaultConnection")));
             }
 
