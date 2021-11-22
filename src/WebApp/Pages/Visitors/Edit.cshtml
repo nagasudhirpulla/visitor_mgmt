@@ -1,0 +1,78 @@
+﻿@page
+@model WebApp.Pages.Visitors.EditModel
+@{
+    ViewData["Title"] = "Edit Visitor Entry";
+}
+
+<div class="row justify-content-center align-items-center">
+    <div class="col col-md-4 col-lg-4 col-xl-3">
+        <h2>@ViewData["Title"]</h2>
+        <form asp-action="Edit">
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="VstrCmd.Id" type="hidden" />
+            <div class="form-group">
+                <label asp-for="VstrCmd.VisitorName"></label>
+                <input asp-for="VstrCmd.VisitorName" class="form-control" />
+                <span asp-validation-for="VstrCmd.VisitorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.CompanyName"></label>
+                <input asp-for="VstrCmd.CompanyName" class="form-control" />
+                <span asp-validation-for="VstrCmd.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.PhoneNumber"></label>
+                <input asp-for="VstrCmd.PhoneNumber" class="form-control" />
+                <span asp-validation-for="VstrCmd.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.VistorAddress"></label>
+                <input asp-for="VstrCmd.VistorAddress" class="form-control" />
+                <span asp-validation-for="VstrCmd.VistorAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.IdType"></label>
+                <input asp-for="VstrCmd.IdType" class="form-control" />
+                <span asp-validation-for="VstrCmd.IdType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.IdProofNumber"></label>
+                <input asp-for="VstrCmd.IdProofNumber" class="form-control" />
+                <span asp-validation-for="VstrCmd.IdProofNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.Devices"></label>
+                <input asp-for="VstrCmd.Devices" class="form-control" />
+                <span asp-validation-for="VstrCmd.Devices" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.PurposeOfVisit"></label>
+                <input asp-for="VstrCmd.PurposeOfVisit" class="form-control" />
+                <span asp-validation-for="VstrCmd.PurposeOfVisit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.PersonToMeet"></label>
+                <input asp-for="VstrCmd.PersonToMeet" class="form-control" />
+                <span asp-validation-for="VstrCmd.PersonToMeet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.InTime"></label>
+                <input asp-for="VstrCmd.InTime" class="form-control" />
+                <span asp-validation-for="VstrCmd.InTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VstrCmd.OutTime"></label>
+                <input asp-for="VstrCmd.OutTime" class="form-control" />
+                <span asp-validation-for="VstrCmd.OutTime" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+        <a asp-page="/Visitors/Index" class="btn btn-primary">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
