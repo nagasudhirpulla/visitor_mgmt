@@ -25,10 +25,10 @@
             <thead>
                 <tr>
                     <th>
-                        Name
+                        In Time
                     </th>
                     <th>
-                        In Time
+                        Name
                     </th>
                     <th>
                         Image
@@ -50,10 +50,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.VisitorName)
+                            @item.InTime.ToString("yyyy-MM-dd HH:mm")
                         </td>
                         <td>
-                            @item.InTime.ToString("yyyy-MM-dd HH:mm")
+                            @Html.DisplayFor(modelItem => item.VisitorName)
                         </td>
                         <td>
                             <img src="@item.ImageFilename" />
@@ -78,10 +78,10 @@
             <tfoot>
                 <tr>
                     <th>
-                        Name
+                        In Time
                     </th>
                     <th>
-                        In Time
+                        Name
                     </th>
                     <th>
                         Image
@@ -134,7 +134,7 @@
                 "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
                 "pageLength": 50,
                 dom: 'Bfrtip',
-                "order": [[0, "asc"]],
+                "order": [[0, "desc"]],
                 buttons: ['pageLength', 'copy', 'csv', 'excel', 'pdf', 'print']
             });
             var r = $('#display_table tfoot tr');

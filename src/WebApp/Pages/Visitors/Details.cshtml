@@ -6,6 +6,13 @@
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col col-md-12 col-lg-12 col-xl-12">
+            <div class="d-print-none">
+                <center>
+                    <button class="btn btn-warning" onclick="window.print()">PRINT</button>
+                    <br />
+                    <br />
+                </center>
+            </div>
             <table id="gatePassTbl">
                 <tr>
                     <td colspan="2" style="text-align:center;">
@@ -32,23 +39,23 @@
                     <td>@Model.VisitorEntry.Created</td>
                 </tr>
                 <tr>
-                    <td>Company</td>
+                    <td>Company Name</td>
                     <td>@Model.VisitorEntry.CompanyName</td>
                 </tr>
                 <tr>
-                    <td>Phone Number</td>
+                    <td>Mobile Number</td>
                     <td>@Model.VisitorEntry.PhoneNumber</td>
                 </tr>
                 <tr>
-                    <td>Visitor Address</td>
+                    <td>Address</td>
                     <td>@Model.VisitorEntry.VistorAddress</td>
                 </tr>
                 <tr>
-                    <td>ID Type</td>
+                    <td>ID Proof Type</td>
                     <td>@Model.VisitorEntry.IdType</td>
                 </tr>
                 <tr>
-                    <td>ID Number</td>
+                    <td>ID Proof Number</td>
                     <td>@Model.VisitorEntry.IdProofNumber </td>
                 </tr>
                 <tr>
@@ -71,7 +78,21 @@
                     <td>Out Time</td>
                     <td></td>
                 </tr>
+                <tr>
+                    <td>Signature of the visitor</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Signature of the Security Officer</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Signature of the Executive</td>
+                    <td></td>
+                </tr>
             </table>
+            <br />
+            <p>Note: Visitors are requested to submit this pass at the entry gate while returning</p>
         </div>
     </div>
 </div>
