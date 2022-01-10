@@ -68,6 +68,7 @@
                             @Html.DisplayFor(modelItem => item.PurposeOfVisit)
                         </td>
                         <td>
+                            <a asp-page="./Create" asp-route-reuseid="@item.Id" class="btn btn-success btn-block">Re-Use</a>
                             <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-block">Edit</a>
                             <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm btn-block">Details</a>
                             <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-block">Delete</a>
@@ -104,60 +105,60 @@
 
 @section Scripts{
     @*<link rel="stylesheet" href="~/js/node_modules/datatables.net-dt/css/jquery.dataTables.min.css" />*@
-    <link rel="stylesheet" href="~/js/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-    <link rel="stylesheet" href="~/css/datatables/fixedHeader.dataTables.min.css" />
-    <link rel="stylesheet" href="~/js/node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" />
-    <script src="~/js/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/js/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/js/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="~/js/node_modules/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="~/js/node_modules/jszip/dist/jszip.min.js"></script>
-    <script src="~/js/node_modules/pdfmake/build/pdfmake.min.js"></script>
-    <script src="~/js/node_modules/pdfmake/build/vfs_fonts.js"></script>
-    <script src="~/js/node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script>
-        function strtrunc(str, max, add) {
-            add = add || '...';
-            return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
-        };
-        $(document).ready(function () {
-            // https://datatables.net/examples/api/multi_filter.html
-            // Setup - add a text input to each footer cell
-            $('#display_table tfoot th').each(function () {
-                //var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Search" />');
-            });
-            var display_table = $('#display_table').DataTable({
-                fixedHeader: true,
-                "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
-                "pageLength": 50,
-                dom: 'Bfrtip',
-                "order": [[0, "desc"]],
-                buttons: ['pageLength', 'copy', 'csv', 'excel', 'pdf', 'print']
-            });
-            var r = $('#display_table tfoot tr');
-            r.find('th').each(function () {
-                $(this).css('padding', '3px');
-            });
-            $('#display_table thead').append(r);
-            // Apply the filter
-            // https://www.jqueryscript.net/demo/DataTables-Jquery-Table-Plugin/examples/api/multi_filter.html
-            $("#display_table thead input").on('keyup change', function () {
-                display_table
-                    .column($(this).parent().index() + ':visible')
-                    .search(this.value)
-                    .draw();
-            });
+<link rel="stylesheet" href="~/js/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" href="~/css/datatables/fixedHeader.dataTables.min.css" />
+<link rel="stylesheet" href="~/js/node_modules/datatables.net-buttons-dt/css/buttons.dataTables.min.css" />
+<script src="~/js/node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/js/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/js/node_modules/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="~/js/node_modules/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="~/js/node_modules/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="~/js/node_modules/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="~/js/node_modules/jszip/dist/jszip.min.js"></script>
+<script src="~/js/node_modules/pdfmake/build/pdfmake.min.js"></script>
+<script src="~/js/node_modules/pdfmake/build/vfs_fonts.js"></script>
+<script src="~/js/node_modules/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script>
+    function strtrunc(str, max, add) {
+        add = add || '...';
+        return (typeof str === 'string' && str.length > max ? str.substring(0, max) + add : str);
+    };
+    $(document).ready(function () {
+        // https://datatables.net/examples/api/multi_filter.html
+        // Setup - add a text input to each footer cell
+        $('#display_table tfoot th').each(function () {
+            //var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search" />');
         });
-    </script>
-    <style>
-        thead input {
-            padding: 2px;
-            box-sizing: border-box;
-            font-size: small;
-            width: 100%
-        }
-    </style>
+        var display_table = $('#display_table').DataTable({
+            fixedHeader: true,
+            "lengthMenu": [[10, 20, 50, 100, -1], [10, 20, 50, 100, "All"]],
+            "pageLength": 50,
+            dom: 'Bfrtip',
+            "order": [[0, "desc"]],
+            buttons: ['pageLength', 'copy', 'csv', 'excel', 'pdf', 'print']
+        });
+        var r = $('#display_table tfoot tr');
+        r.find('th').each(function () {
+            $(this).css('padding', '3px');
+        });
+        $('#display_table thead').append(r);
+        // Apply the filter
+        // https://www.jqueryscript.net/demo/DataTables-Jquery-Table-Plugin/examples/api/multi_filter.html
+        $("#display_table thead input").on('keyup change', function () {
+            display_table
+                .column($(this).parent().index() + ':visible')
+                .search(this.value)
+                .draw();
+        });
+    });
+</script>
+<style>
+    thead input {
+        padding: 2px;
+        box-sizing: border-box;
+        font-size: small;
+        width: 100%
+    }
+</style>
 }

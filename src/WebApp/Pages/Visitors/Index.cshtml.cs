@@ -30,7 +30,7 @@ namespace WebApp.Pages.Visitors
         public async Task OnGetAsync()
         {
             DateTime defDate = DateTime.Now.Date;
-            VQuery = new() { StartDate = defDate, EndDate = defDate };
+            VQuery = new() { StartDate = defDate - TimeSpan.FromDays(2), EndDate = defDate };
             VisitorsList = await _mediator.Send(VQuery);
             await PopulateImageDataUris();
         }
